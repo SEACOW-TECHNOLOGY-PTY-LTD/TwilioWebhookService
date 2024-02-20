@@ -22,7 +22,7 @@ builder.Services.Configure<RouteOptions>(options =>
 });
 
 // 配置端口
-builder.WebHost.ConfigureServerOptions(builder.Environment, builder.Configuration,5500, 5501);
+builder.WebHost.ConfigureServerOptions(builder.Environment, builder.Configuration,5500);
 
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();

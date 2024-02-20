@@ -8,6 +8,22 @@ namespace Shared.Extensions;
 
 public static class WebHostBuilderExtensions
 {
+    public static IWebHostBuilder ConfigureServerOptions(this IWebHostBuilder builder, IWebHostEnvironment environment, IConfiguration configuration, int httpPort)
+    {
+        builder.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
+            
+            serverOptions.ListenLocalhost(httpPort, listenOptions =>
+            {
+                listenOptions.UseConnectionLogging();
+                listenOptions.Protocols = HttpProtocols.Http1;
+            });
+        });
+
+        return builder;
+    }
+    
     public static IWebHostBuilder ConfigureServerOptions(this IWebHostBuilder builder, IWebHostEnvironment environment, IConfiguration configuration, int httpPort, int httpsPort)
     {
         builder.ConfigureKestrel(serverOptions =>
