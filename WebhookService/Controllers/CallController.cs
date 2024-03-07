@@ -8,8 +8,7 @@ namespace WebhookService.Controllers;
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiVersion("1.0")]
-public class CallController()
-    : ControllerBase
+public class CallController() : ControllerBase
 {
     [HttpPost]
     [ValidateTwilioRequest]
